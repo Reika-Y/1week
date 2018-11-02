@@ -1,5 +1,5 @@
 #include "Dxlib.h"	
-#include "MouseCtrl.h"
+#include "KeyboardCtl.h"
 #include "VECTOR2.h"
 #include "GameTask.h"
 #include "TitleScene.h"
@@ -42,7 +42,7 @@ int GameTask::SysInit(void)
 	SetWindowText("“cŒû–¢—ˆ‚Í—‰¤—lI");
 	if (DxLib_Init() == -1) return false;			// DX×²ÌŞ×Ø‰Šú‰»ˆ—
 	SetDrawScreen(DX_SCREEN_BACK);					// ‚Ğ‚Æ‚Ü‚¸ÊŞ¯¸ÊŞ¯Ì§‚É•`‰æ
-	mouse = std::make_unique<MouseCtrl>();
+	key = std::make_unique<KeyboardCtl>();
 	return true;
 }
 
@@ -52,7 +52,7 @@ void GameTask::Run(void)
 	nowScene = make_unique<TitleScene>();
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-		(*mouse).UpDate();
-		nowScene = (*nowScene).Updata(move(nowScene), *mouse);
+		(*key).UpDate();
+		nowScene = (*nowScene).Updata(move(nowScene), *key);
 	}
 }

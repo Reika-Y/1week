@@ -6,6 +6,6 @@ struct TitleScene : BaseScene
 	TitleScene();
 	~TitleScene();
 	int Init(void);
-	baseScene Updata(baseScene own, const MouseCtrl&mouseCtrl);
+	baseScene Updata(baseScene own, const KeyboardCtl&key);
 };
 
