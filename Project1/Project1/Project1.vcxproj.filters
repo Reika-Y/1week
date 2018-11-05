@@ -51,6 +51,12 @@
     <ClCompile Include="KeyboardCtl.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTask.h">
@@ -71,13 +77,19 @@
     <ClInclude Include="ResultScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="MouseCtrl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardCtl.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBoard.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Card.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
