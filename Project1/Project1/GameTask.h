@@ -4,7 +4,7 @@
 #include "BaseScene.h"
 
 class VECTOR2;
-class MouseCtrl;
+class KeyboardCtl;
 
 #define lpGameTask		(GameTask::GetInstance())
 
@@ -37,6 +37,6 @@ private:
 
 	int (GameTask::*TaskPtr)(void);
 	static unique_ptr<GameTask,GameTaskDeleter>s_instance;
-	unique_ptr<MouseCtrl>mouse;
+	unique_ptr<KeyboardCtl>key;
 	baseScene nowScene;
 };

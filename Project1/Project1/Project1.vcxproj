@@ -128,6 +128,7 @@
     <ClCompile Include="GameMainScene.cpp" />
     <ClCompile Include="GameTask.cpp" />
     <ClCompile Include="ImageMng.cpp" />
+    <ClCompile Include="KeyboardCtl.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MouseCtrl.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="GameMainScene.h" />
     <ClInclude Include="GameTask.h" />
     <ClInclude Include="ImageMng.h" />
+    <ClInclude Include="KeyboardCtl.h" />
     <ClInclude Include="MouseCtrl.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="TitleScene.h" />

@@ -1,6 +1,6 @@
 #include "DxLib.h"
 #include "ResultScene.h"
-#include "MouseCtrl.h"
+#include "KeyboardCtl.h"
 #include "TitleScene.h"
 
 using std::make_unique;
@@ -20,9 +20,9 @@ int ResultScene::Init(void)
 	return 0;
 }
 
-baseScene ResultScene::Updata(baseScene own, const MouseCtrl&mouseCtrl)
+baseScene ResultScene::Updata(baseScene own, const KeyboardCtl&key)
 {
-	if ((mouseCtrl.GetBtn()[ST_NOW] & (~mouseCtrl.GetBtn()[ST_OLD]) & MOUSE_INPUT_LEFT) != 0)
+	if ((key.GetBtn()[ST_NOW] & (~key.GetBtn()[ST_OLD]) & KEY_INPUT_RETURN) != 0)
 	{
 		return make_unique<TitleScene>();
 	}
