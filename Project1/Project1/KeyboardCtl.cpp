@@ -12,18 +12,22 @@ KeyboardCtl::~KeyboardCtl()
 {
 }
 
-VECTOR2 KeyboardCtl::GetPoint(void) const
+char KeyboardCtl::GetBtn(int key) const
 {
-	return pos;
+	return keyData[key];
 }
 
-KEY_INT KeyboardCtl::GetBtn(void) const
+bool KeyboardCtl::CheckKey(int key) const
 {
-	return keyBtn;
+	if (keyData[key] && !keyDataOld[key])
+	{
+		return true;
+	}
+	return false;
 }
 
 void KeyboardCtl::UpDate(void)
 {
-	keyBtn[ST_OLD] = keyBtn[ST_NOW];
-	keyBtn[ST_NOW] = GetHitKeyStateAll(key);
+	memcpy(keyDataOld, keyData, sizeof(keyDataOld));
+	GetHitKeyStateAll(keyData);
 }

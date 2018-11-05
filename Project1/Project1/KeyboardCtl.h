@@ -9,20 +9,19 @@ enum Key_ST
 	ST_MAX
 };
 
-using KEY_INT = std::array<int, ST_MAX>;
+//using KEY_INT = std::array<int, 256/*ST_MAX*/>;
 
 class KeyboardCtl
 {
 public:
 	KeyboardCtl();
 	~KeyboardCtl();
-	VECTOR2 GetPoint(void)const;
-	KEY_INT GetBtn(void)const;
+	char GetBtn(int key)const;
+	bool CheckKey(int key)const;
 	void UpDate(void);
 
 private:
-	char key[256];
-	KEY_INT keyBtn;
-	VECTOR2 pos;
+	char keyData[256];
+	char keyDataOld[256];
 };
 
