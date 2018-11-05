@@ -33,7 +33,7 @@ baseScene GameMainScene::Updata(baseScene own, const KeyboardCtl&key)
 	DrawString(0,0,"GameScene",0xffffff);
 	gboard->Draw();
 	ScreenFlip();
-	if ((key.GetBtn()[ST_NOW] & (~key.GetBtn()[ST_OLD]) & KEY_INPUT_RETURN) != 0)
+	if (key.CheckKey(KEY_INPUT_RETURN))
 	{
 		return make_unique<ResultScene>();
 	}

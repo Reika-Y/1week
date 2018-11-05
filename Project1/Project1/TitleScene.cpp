@@ -25,7 +25,7 @@ baseScene TitleScene::Updata(baseScene own, const KeyboardCtl&key)
 	ClsDrawScreen();
 	DrawString(0, 0, "TitleScene", 0xffffff);
 	ScreenFlip();
-	if ((key.GetBtn()[ST_NOW] & (~key.GetBtn()[ST_OLD]) & KEY_INPUT_RETURN) != 0)
+	if (key.CheckKey(KEY_INPUT_RETURN))
 	{
 		return make_unique<GameMainScene>();
 	}
