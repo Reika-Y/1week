@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "GameMainScene.h"
 #include "KeyboardCtl.h"
+#include "GameBoard.h"
 #include "VECTOR2.h"
 #include "ResultScene.h"
 
@@ -22,6 +23,7 @@ GameMainScene::~GameMainScene()
 
 int GameMainScene::Init(void)
 {
+	gboard = std::make_shared<GameBoard>();
 	return 0;
 }
 
@@ -29,6 +31,7 @@ baseScene GameMainScene::Updata(baseScene own, const KeyboardCtl&key)
 {		
 	ClsDrawScreen();
 	DrawString(0,0,"GameScene",0xffffff);
+	gboard->Draw();
 	ScreenFlip();
 	if ((key.GetBtn()[ST_NOW] & (~key.GetBtn()[ST_OLD]) & KEY_INPUT_RETURN) != 0)
 	{
