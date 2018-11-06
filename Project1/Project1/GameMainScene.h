@@ -23,6 +23,7 @@ private:
 	void MakePlayer(void);
 	bool ResultCheck(void);
 	shared_ptr<GameBoard>gboard;
+	unique_ptr<Player>player;
 	Player_List PlayerList;
 };
 
