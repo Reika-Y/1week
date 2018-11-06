@@ -1,9 +1,11 @@
 #pragma once
 #include <vector>
+#include "list"
 #include <memory>
 #include "VECTOR2.h"
 
 class Card;
+using card_List = std::list<std::shared_ptr<Card>>;
 
 class GameBoard
 {
@@ -16,11 +18,11 @@ public:
 	bool CardFall(void);
 	bool CardMove(void);
 	bool HandCheck(void);
-
 private:
 	bool ReSize(VECTOR2 vec);
-	std::vector<std::weak_ptr<Card>*> data;
-	std::vector<std::weak_ptr<Card>> baseData;
+	bool CardCreate(void);
+	std::shared_ptr<Card> nowCard;
+	card_List cardlist;
 	VECTOR2 boardLT;
 	VECTOR2 screenSize;
 	VECTOR2 boardSize;
