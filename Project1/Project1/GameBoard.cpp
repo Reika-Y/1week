@@ -36,6 +36,7 @@ bool GameBoard::CardFall(void)
 
 bool GameBoard::CardMove(void)
 {
+	cardlist.push_back(nowCard);
 
 	return false;
 }
@@ -48,7 +49,6 @@ bool GameBoard::HandCheck(void)
 bool GameBoard::CardCreate(void)
 {
 	nowCard = std::make_shared<Card>();
-	cardlist.push_back(nowCard);
 	return false;
 }
 
