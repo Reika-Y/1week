@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "GameBoard.h"
 #include "GameTask.h"
+#include "Card.h"
 
 const VECTOR2 BOARD_SIZE = VECTOR2(60 * 8, 80 * 7);
 
