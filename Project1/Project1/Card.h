@@ -22,10 +22,12 @@ CardInfo cardInfo;
 class Card
 {
 public:
-	Card(HUNDLE hundle,int num);
+	Card(VECTOR2 pos, VECTOR2 offSet, HUNDLE hundle,int num);
 	~Card();
 	void Draw(void);		// 描画関数
 	bool Update(void);		// 更新関数
+	bool SetPos(VECTOR2 pos);				// 座標書き換え
+	bool SetOffSet(VECTOR2 offSet); 		// ｵﾌｾｯﾄ座標書き換え
 private:
 	VECTOR2 pos;		// 座標
 	VECTOR2 offSet;		// ｵﾌｾｯﾄ座標
