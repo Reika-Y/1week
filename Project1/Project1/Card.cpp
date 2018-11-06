@@ -2,33 +2,27 @@
 #include "VECTOR2.h"
 #include "Card.h"
 #include "ImageMng.h"
-#include "GameBoard.h"
 
-// 落ちる速さ
-const int def_speed = 5;
+// 画像関連
+const string fileName = "image/trump.png";
+const VECTOR2 cardDiv = { 8,8 };
+const VECTOR2 cardSize = { 60,90 };
 
-const VECTOR2 cardDiv = VECTOR2(8, 8);
 /*
 * ｺﾝｽﾄﾗｸﾀ
 * @param (HUNDLE hundle) ﾄﾗﾝﾌﾟの柄
 * @param (int num) ﾄﾗﾝﾌﾟの数字
-* @param (VECTOR2 cardSize) ﾄﾗﾝﾌﾟのｻｲｽﾞ
 */
-Card::Card(HUNDLE hundle, int num, VECTOR2 cardSize)
+Card::Card(HUNDLE hundle, int num)
 {
-	//ImageMng::GetID("f_name", cardSize, cardDiv, VECTOR2(0, 0));
+	ImageMng::GetInstance().GetID(fileName,cardSize,cardDiv);
 	cardInfo.hundle = hundle;
 	cardInfo.num	= num;
-	this->cardSize = cardSize;
-	speed = 0;
-	nowFlag = true;
-	downFlag = false;
 }
 
 
 Card::~Card()
 {
-	downFlag = false;
 }
 
 // 描画関数
@@ -40,21 +34,10 @@ void Card::Draw(void)
 // 更新関数
 bool Card::Update(void)
 {
-	if (nowFlag)
-	{
-		
-	}
-	nowFlag = false;
-	return true;
-}
 
-// 強制落下用
-bool Card::SetDown(bool flag)
-{
-	return downFlag = flag;
 }
 
 int DrawGraph(VECTOR2 pos, int GrHundle)
 {
-	DrawGraph(pos.x, pos.y, GrHundle, true);
+	return DrawGraph(pos.x, pos.y, GrHundle, true);
 }

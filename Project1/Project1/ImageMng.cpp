@@ -16,7 +16,7 @@ const VEC_INT & ImageMng::GetID(string f_name)
 }
 
  // ˆø”•t‚«
-const VEC_INT & ImageMng::GetID(string f_name, VECTOR2 divSize, VECTOR2 divCnt, VECTOR2 chipOffSet)
+const VEC_INT & ImageMng::GetID(string f_name, VECTOR2 divSize, VECTOR2 divCnt)
 {
 	if (imgMap.find(f_name) == imgMap.end())
 	{
