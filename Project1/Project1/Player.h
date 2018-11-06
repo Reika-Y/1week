@@ -7,10 +7,10 @@ public:
 	Player();
 	~Player();
 
-	void Update(void);
-	bool Draw(void);
+	void Update(void); 
+	void Draw(void);
+	bool move(KeyboardCtl&key);
 
 private:
 
 };
-

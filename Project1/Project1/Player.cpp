@@ -1,3 +1,4 @@
+#include "DxLib.h"
 #include "Player.h"
 
 
@@ -13,9 +14,10 @@ Player::~Player()
 
 void Player::Update(void)
 {
+	Draw();
 }
 
-bool Player::Draw(void)
+void Player::Draw(void)
 {
-	return false;
+	DrawString(0, 100, "Ç’ÇÍÇ¢Ç‚Å[", 0xffffff);
 }
