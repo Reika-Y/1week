@@ -26,6 +26,7 @@ public:
 	~Card();
 	void Draw(void);		// 描画関数
 	bool Update(void);		// 更新関数
+	const VECTOR2 GetPos(void);				// 座標取得用
 	bool SetPos(VECTOR2 pos);				// 座標書き換え
 	bool SetOffSet(VECTOR2 offSet); 		// ｵﾌｾｯﾄ座標書き換え
 private:
