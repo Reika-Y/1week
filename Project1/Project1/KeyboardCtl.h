@@ -2,22 +2,15 @@
 #include <array>
 #include "VECTOR2.h"
 
-enum Key_ST 
-{
-	ST_NOW,
-	ST_OLD,
-	ST_MAX
-};
 
-//using KEY_INT = std::array<int, 256/*ST_MAX*/>;
 
 class KeyboardCtl
 {
 public:
 	KeyboardCtl();
 	~KeyboardCtl();
-	char GetBtn(int key)const;
-	bool CheckKey(int key)const;
+	bool CheckKey(int key)const; // キー入力状態チェック
+	bool TriggerBtn(int key)const;
 	void UpDate(void);
 
 private:

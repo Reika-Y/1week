@@ -18,7 +18,7 @@ public:
 	}	
 
 	const VEC_INT&GetID(string f_name);
-	const VEC_INT&GetID(string f_name, VECTOR2 divSize, VECTOR2 divCnt, VECTOR2 chipOffSet);	
+	const VEC_INT&GetID(string f_name, VECTOR2 divSize, VECTOR2 divCnt);	
 private:
 	struct ImageMngDeleter
 	{
