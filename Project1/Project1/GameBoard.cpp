@@ -31,9 +31,12 @@ void GameBoard::Draw(void)
 {
 	DrawBox(boardLT, boardLT + BOARD_SIZE, 0x109910, true);
 	nowCard->Draw();
-	for (auto itr : cardlist)
+	if (cardlist.size() > 0)
 	{
-		itr->Draw();
+		for (auto itr : cardlist)
+		{
+			itr->Draw();
+		}
 	}
 }
 
