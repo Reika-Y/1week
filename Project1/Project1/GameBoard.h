@@ -13,7 +13,7 @@ class GameBoard
 public:
 	GameBoard();
 	~GameBoard();
-	void Update(void);
+	void Update(const KeyboardCtl& key);
 	void Draw(void);
 	const VECTOR2 GetBoardSize(void);
 	bool CardFall(void);

@@ -16,14 +16,21 @@ GameBoard::~GameBoard()
 }
 
 //更新処理
-void GameBoard::Update(void)
+void GameBoard::Update(const KeyboardCtl& key)
 {
+	CardFall();
+	CardMove(key);
 }
 
 //描画
 void GameBoard::Draw(void)
 {
 	DrawBox(boardLT, boardLT + BOARD_SIZE, 0x109910, true);
+	nowCard->Draw();
+	for (auto itr : cardlist)
+	{
+		itr->Draw();
+	}
 }
 
 //盤面サイズ
