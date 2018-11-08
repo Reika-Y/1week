@@ -18,6 +18,10 @@ GameBoard::~GameBoard()
 //XVˆ—
 void GameBoard::Update(const KeyboardCtl& key)
 {
+	if (!nowCard)
+	{
+		CardCreate();
+	}
 	CardFall();
 	CardMove(key);
 }
