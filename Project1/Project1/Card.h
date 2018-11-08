@@ -4,10 +4,10 @@
 // 柄
 enum HUNDLE
 {
-	HEART,		// ﾊｰﾄ
+	SPADE,		// ｽﾍﾟｰﾄﾞ
 	DIA,		// ﾀﾞｲｱ
 	CLUB,		// ｸﾗﾌﾞ
-	SPADE,		// ｽﾍﾟｰﾄﾞ
+	HEART,		// ﾊｰﾄ
 	HUNDLE_MAX
 };
 
@@ -25,6 +25,7 @@ public:
 	~Card();
 	void Draw(void);		// 描画関数
 	bool Update(void);		// 更新関数
+	const CardInfo GetCardInfo(void);		// ｶｰﾄﾞ情報取得用
 	const VECTOR2 GetPos(void);				// 座標取得用
 	bool SetPos(VECTOR2 pos);				// 座標書き換え
 	bool SetOffSet(VECTOR2 offSet); 		// ｵﾌｾｯﾄ座標書き換え
