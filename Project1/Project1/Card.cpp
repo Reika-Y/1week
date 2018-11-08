@@ -4,7 +4,7 @@
 
 // 画像関連
 const string fileName = "image/trump.png";
-const VECTOR2 cardDiv = { 8,8 };
+const VECTOR2 cardDiv = { 13,4 };
 const VECTOR2 cardSize = { 60,90 };
 
 /*
@@ -39,6 +39,12 @@ void Card::Draw(void)
 bool Card::Update(void)
 {
 	return false;
+}
+
+// ｶｰﾄﾞ情報取得用
+const CardInfo Card::GetCardInfo(void)
+{
+	return Card::cardInfo;
 }
 
 // 座標取得用
