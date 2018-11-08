@@ -8,6 +8,10 @@ const string fileName = "image/trump.png";
 const VECTOR2 cardDiv = { 8,8 };
 const VECTOR2 cardSize = { 60,90 };
 
+Card::Card()
+{
+}
+
 /*
 * ╨щ╫дв╦ю
 * @param (VECTOR2 pos) █ю∙W

@@ -17,11 +17,12 @@ struct CardInfo {
 	HUNDLE hundle;		// •¿
 	int num;			// ”Ô†
 };
-CardInfo cardInfo;
+
 
 class Card
 {
 public:
+	Card();
 	Card(VECTOR2 pos, VECTOR2 offSet, HUNDLE hundle,int num);
 	~Card();
 	void Draw(void);		// •`‰æŠÖ”
@@ -32,6 +33,7 @@ public:
 private:
 	VECTOR2 pos;		// À•W
 	VECTOR2 offSet;		// µÌ¾¯ÄÀ•W
+	CardInfo cardInfo;
 };
 
 int DrawGraph(VECTOR2 pos, int GrHundle);
