@@ -1,11 +1,11 @@
 #pragma once
 #include "Hand.h"
-class ThreeCard :
+class Straight :
 	public Hand
 {
 public:
-	ThreeCard();
-	~ThreeCard();
+	Straight();
+	~Straight();
 
 	HAND GetHand(void);		//–ð‚ð•Ô‚·
 	int GetPoint(void);		//“¾“_‚ð•Ô‚·

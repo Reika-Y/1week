@@ -1,11 +1,11 @@
 #pragma once
 #include "Hand.h"
-class ThreeCard :
+class Flush :
 	public Hand
 {
 public:
-	ThreeCard();
-	~ThreeCard();
+	Flush();
+	~Flush();
 
 	HAND GetHand(void);		//–ð‚ð•Ô‚·
 	int GetPoint(void);		//“¾“_‚ð•Ô‚·
