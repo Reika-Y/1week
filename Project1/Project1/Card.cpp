@@ -10,6 +10,7 @@ const VECTOR2 cardSize = { 60,90 };
 
 Card::Card()
 {
+	ImageMng::GetInstance().GetID(fileName, cardSize, cardDiv);
 }
 
 /*
