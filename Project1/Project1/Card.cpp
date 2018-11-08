@@ -1,5 +1,4 @@
 #include "DxLib.h"
-#include "VECTOR2.h"
 #include "Card.h"
 #include "ImageMng.h"
 
@@ -7,10 +6,6 @@
 const string fileName = "image/trump.png";
 const VECTOR2 cardDiv = { 8,8 };
 const VECTOR2 cardSize = { 60,90 };
-
-Card::Card()
-{
-}
 
 /*
 * ∫›Ωƒ◊∏¿
@@ -37,7 +32,7 @@ Card::~Card()
 void Card::Draw(void)
 {
 	int id = 0;
-	DrawGraph(pos + offSet, fileName[id]);
+	DrawGraph(pos + offSet, fileName[0]);
 }
 
 // çXêVä÷êî

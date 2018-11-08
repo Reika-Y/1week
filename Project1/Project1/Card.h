@@ -1,6 +1,5 @@
 #pragma once
-
-class VECTOR2;
+#include "VECTOR2.h"
 
 // ïø
 enum HUNDLE
@@ -22,7 +21,6 @@ struct CardInfo {
 class Card
 {
 public:
-	Card();
 	Card(VECTOR2 pos, VECTOR2 offSet, HUNDLE hundle,int num);
 	~Card();
 	void Draw(void);		// ï`âÊä÷êî
