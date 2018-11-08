@@ -39,6 +39,13 @@ void Card::Draw(void)
 // 更新関数
 bool Card::Update(void)
 {
+	return false;
+}
+
+// 座標取得用
+const VECTOR2 Card::GetPos(void)
+{
+	return pos;
 }
 
 /*

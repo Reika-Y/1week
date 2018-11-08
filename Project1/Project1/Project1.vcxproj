@@ -90,6 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\DxLib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -121,6 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\DxLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -138,7 +140,6 @@
     <ClCompile Include="KeyboardCtl.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MouseCtrl.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="VECTOR2.cpp" />
@@ -152,7 +153,6 @@
     <ClInclude Include="ImageMng.h" />
     <ClInclude Include="KeyboardCtl.h" />
     <ClInclude Include="MouseCtrl.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="VECTOR2.h" />

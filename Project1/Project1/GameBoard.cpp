@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "GameBoard.h"
 #include "GameTask.h"
+#include "Card.h"
 
 const VECTOR2 BOARD_SIZE = VECTOR2(60 * 8, 80 * 7);
 
@@ -20,21 +21,24 @@ void GameBoard::Update(void)
 
 void GameBoard::Draw(void)
 {
-	DrawBox(boardLT, screenSize - boardLT, 0x109910, true);
+	DrawBox(boardLT, boardLT + BOARD_SIZE, 0x109910, true);
 }
 
 const VECTOR2 GameBoard::GetBoardSize(void)
 {
-	return VECTOR2();
+	return BOARD_SIZE;
 }
 
 bool GameBoard::CardFall(void)
 {
+
 	return false;
 }
 
 bool GameBoard::CardMove(void)
 {
+	cardlist.push_back(nowCard);
+
 	return false;
 }
 
@@ -43,16 +47,16 @@ bool GameBoard::HandCheck(void)
 	return false;
 }
 
+bool GameBoard::CardCreate(void)
+{
+	nowCard = std::make_shared<Card>();
+	return false;
+}
+
 bool GameBoard::ReSize(VECTOR2 vec)
 {
-	baseData.resize(vec.y*vec.x);
-	data.resize(vec.y);
-	for (unsigned int j = 0; j < data.size(); j++)
-	{
-		data[j] = &baseData[j*vec.x];
-	}
 	screenSize = lpGameTask.GetScreenSize();
-	boardLT = VECTOR2((screenSize.x - BOARD_SIZE.x) / 2, (screenSize.y - BOARD_SIZE.y) / 2);
+	boardLT = VECTOR2((screenSize.x - BOARD_SIZE.x)/4, (screenSize.y - BOARD_SIZE.y)/2);
 	return true;
 }
 
