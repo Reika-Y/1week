@@ -1,5 +1,4 @@
 #include "DxLib.h"
-#include "VECTOR2.h"
 #include "Card.h"
 #include "ImageMng.h"
 
@@ -33,7 +32,7 @@ Card::~Card()
 void Card::Draw(void)
 {
 	int id = 0;
-	DrawGraph(pos + offSet, fileName[id]);
+	DrawGraph(pos + offSet, fileName[0]);
 }
 
 // çXêVä÷êî
