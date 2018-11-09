@@ -24,13 +24,13 @@ GameMainScene::~GameMainScene()
 
 void GameMainScene::MakePlayer(void)
 {
-	player = std::make_unique<Player>();
+	//player = std::make_unique<Player>();
 }
 
 int GameMainScene::Init(void)
 {
 	gboard = std::make_shared<GameBoard>();
-	MakePlayer();
+	//MakePlayer();
 	return 0;
 }
 
@@ -40,7 +40,7 @@ baseScene GameMainScene::Updata(baseScene own, const KeyboardCtl&key)
 	DrawString(0,0,"GameScene",0xffffff);
 	gboard->Update(key);
 	gboard->Draw();
-	player->Update();
+	//player->Update();
 	ScreenFlip();
 	if (key.CheckKey(KEY_INPUT_RETURN))
 	{
