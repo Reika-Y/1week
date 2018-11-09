@@ -6,5 +6,8 @@ class Twopair :
 public:
 	Twopair();
 	~Twopair();
+
+	HAND GetHand(void);		//–ð‚ð•Ô‚·
+	int GetPoint(void);		//“¾“_‚ð•Ô‚·
 };
 

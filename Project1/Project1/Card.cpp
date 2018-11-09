@@ -4,7 +4,7 @@
 
 // 画像関連
 const string fileName = "image/trump.png";
-const VECTOR2 cardDiv = { 8,8 };
+const VECTOR2 cardDiv = { 13,4 };
 const VECTOR2 cardSize = { 60,90 };
 
 /*
@@ -32,13 +32,19 @@ Card::~Card()
 void Card::Draw(void)
 {
 	int id = 0;
-	DrawGraph(pos + offSet, fileName[0]);
+	DrawGraph(pos + offSet, IMAGE_ID(fileName)[id],true);
 }
 
 // 更新関数
 bool Card::Update(void)
 {
 	return false;
+}
+
+// ｶｰﾄﾞ情報取得用
+const CardInfo Card::GetCardInfo(void)
+{
+	return Card::cardInfo;
 }
 
 // 座標取得用
@@ -66,7 +72,7 @@ bool Card::SetOffSet(VECTOR2 offSet)
 	return true;
 }
 
-int DrawGraph(VECTOR2 pos, int GrHundle)
+int DrawGraph(VECTOR2 pos, int GrHundle, bool Flag)
 {
-	return DrawGraph(pos.x, pos.y, GrHundle, true);
+	return DrawGraph(pos.x, pos.y, GrHundle, Flag);
 }

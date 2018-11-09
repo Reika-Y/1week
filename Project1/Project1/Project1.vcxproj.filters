@@ -19,6 +19,12 @@
     <Filter Include="ヘッダー ファイル\Scene">
       <UniqueIdentifier>{4535e3da-a780-4321-a77e-c9b931dadae5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Hand">
+      <UniqueIdentifier>{6c6c18fd-5ea7-4385-8176-b13f14f45f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Hand">
+      <UniqueIdentifier>{f3a34f67-3756-49cd-9e7a-7c6433505948}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameTask.cpp">
@@ -57,6 +63,30 @@
     <ClCompile Include="Card.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Hand.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="Onepair.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="Twopair.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreeCard.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="Flush.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="FourCard.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="Straight.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
+    <ClCompile Include="StraightFlush.cpp">
+      <Filter>ソース ファイル\Hand</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameTask.h">
@@ -91,6 +121,30 @@
     </ClInclude>
     <ClInclude Include="Card.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Hand.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="Onepair.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreeCard.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="Twopair.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="Flush.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="FourCard.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="Straight.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
+    </ClInclude>
+    <ClInclude Include="StraightFlush.h">
+      <Filter>ヘッダー ファイル\Hand</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

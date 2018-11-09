@@ -6,5 +6,8 @@ class ThreeCard :
 public:
 	ThreeCard();
 	~ThreeCard();
+
+	HAND GetHand(void);		//–ð‚ð•Ô‚·
+	int GetPoint(void);		//“¾“_‚ð•Ô‚·
 };
 
