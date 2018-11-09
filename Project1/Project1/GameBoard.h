@@ -22,8 +22,10 @@ private:
 	bool ReSize(VECTOR2 vec);
 	bool CardCreate(void);
 	bool MoveLimitX(void);
-	bool MoveLimitY(void);
+	bool MoveLimitY(VECTOR2 nowPos);
 	std::shared_ptr<Card> nowCard;
+	std::vector<std::weak_ptr<Card>*> data;
+	std::vector<std::weak_ptr<Card>> baseData;
 	std::shared_ptr<Card> oldCard;
 	card_List cardlist;
 	VECTOR2 boardLT;

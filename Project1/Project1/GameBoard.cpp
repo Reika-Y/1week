@@ -4,8 +4,7 @@
 #include "KeyboardCtl.h"
 #include "Card.h"
 
-const VECTOR2 CARD_SIZE = VECTOR2(60, 80);
-const VECTOR2 BOARD_SIZE = VECTOR2(CARD_SIZE.x * 8, CARD_SIZE.y * 7);
+const VECTOR2 CARD_SIZE = VECTOR2(60, 90);
 
 
 GameBoard::GameBoard()
@@ -31,7 +30,7 @@ void GameBoard::Update(const KeyboardCtl& key)
 //•`‰æ
 void GameBoard::Draw(void)
 {
-	DrawBox(boardLT, boardLT + BOARD_SIZE, 0x109910, true);
+	DrawBox(boardLT, boardLT + boardSize, 0x109910, true);
 	nowCard->Draw();
 	if (cardlist.size() > 0)
 	{
@@ -45,19 +44,21 @@ void GameBoard::Draw(void)
 //”Õ–ÊƒTƒCƒY
 const VECTOR2 GameBoard::GetBoardSize(void)
 {
-	return BOARD_SIZE;
+	return VECTOR2((baseData.size() / data.size())*CARD_SIZE.x, data.size()*CARD_SIZE.y);
 }
 
 //—Ž‰ºˆ—
 bool GameBoard::CardFall(void)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	if (MoveLimitY())
+	if (MoveLimitY(tmpPos))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x, tmpPos.y + 1));
 	}
 	else
 	{
+		VECTOR2 stop = tmpPos / CARD_SIZE;
+		data[stop.y][stop.x] = nowCard;
 		oldCard = std::move(nowCard);
 		cardlist.push_back(oldCard);
 		CardCreate();
@@ -69,7 +70,7 @@ bool GameBoard::CardFall(void)
 bool GameBoard::CardMove(const KeyboardCtl& key)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	if (key.CheckKey(KEY_INPUT_RIGHT) && !(BOARD_SIZE.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x))
+	if (key.CheckKey(KEY_INPUT_RIGHT) && !(boardSize.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x + CARD_SIZE.x, tmpPos.y));
 	}
@@ -92,22 +93,18 @@ bool GameBoard::MoveLimitX(void)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
 
-	if (BOARD_SIZE.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x)
-	{
-		return false;
-	}
-	if (tmpPos.x - CARD_SIZE.x < 0)
-	{
-		return true;
-	}
 	return true;
 }
 
-bool GameBoard::MoveLimitY(void)
+bool GameBoard::MoveLimitY(VECTOR2 nowPos)
 {
-	VECTOR2 tmpPos = nowCard->GetPos();
+	VECTOR2 nextPos = nowPos  / CARD_SIZE;
 
-	if (BOARD_SIZE.y - CARD_SIZE.y < tmpPos.y + 10)
+	if (boardSize.y - CARD_SIZE.y < nowPos.y + 10)
+	{
+		return false;
+	}
+	if (!data[nextPos.y+1][nextPos.x].expired())
 	{
 		return false;
 	}
@@ -117,8 +114,16 @@ bool GameBoard::MoveLimitY(void)
 //‰Šú‰»
 bool GameBoard::ReSize(VECTOR2 vec)
 {
+	baseData.resize(vec.y*vec.x);
+	data.resize(vec.y);
+
+	for (unsigned int j = 0; j < data.size(); j++)
+	{
+		data[j] = &baseData[j*vec.x];
+	}
 	screenSize = lpGameTask.GetScreenSize();
-	boardLT = VECTOR2((screenSize.x - BOARD_SIZE.x)/4, (screenSize.y - BOARD_SIZE.y)/2);
+	boardSize = GetBoardSize();
+	boardLT = VECTOR2((screenSize.x - boardSize.x)/4, (screenSize.y - boardSize.y)/2);
 	return true;
 }
 
