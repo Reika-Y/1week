@@ -31,8 +31,8 @@ Card::~Card()
 // •`‰æŠÖ”
 void Card::Draw(void)
 {
-	int id = 0;
-	DrawGraph(pos + offSet, IMAGE_ID(fileName)[id],true);
+	int id = cardInfo.hundle * (cardDiv.x) + cardInfo.num - 1;
+	DrawGraph(pos + offSet, IMAGE_ID(fileName)[id],false);
 }
 
 // XVŠÖ”
