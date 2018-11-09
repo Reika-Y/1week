@@ -32,7 +32,7 @@ Card::~Card()
 void Card::Draw(void)
 {
 	int id = 0;
-	DrawGraph(pos + offSet, fileName[0]);
+	DrawGraph(pos + offSet, IMAGE_ID(fileName)[id],true);
 }
 
 // çXêVä÷êî
@@ -72,7 +72,7 @@ bool Card::SetOffSet(VECTOR2 offSet)
 	return true;
 }
 
-int DrawGraph(VECTOR2 pos, int GrHundle)
+int DrawGraph(VECTOR2 pos, int GrHundle, bool Flag)
 {
-	return DrawGraph(pos.x, pos.y, GrHundle, true);
+	return DrawGraph(pos.x, pos.y, GrHundle, Flag);
 }
