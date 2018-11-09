@@ -31,6 +31,7 @@ baseScene GameMainScene::Updata(baseScene own, const KeyboardCtl&key)
 {		
 	ClsDrawScreen();
 	DrawString(0,0,"GameScene",0xffffff);
+	gboard->Update(key);
 	gboard->Draw();
 	ScreenFlip();
 	if (key.CheckKey(KEY_INPUT_RETURN))

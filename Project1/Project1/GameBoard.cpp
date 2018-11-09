@@ -22,8 +22,8 @@ void GameBoard::Update(const KeyboardCtl& key)
 	{
 		CardCreate();
 	}
-	CardFall();
-	CardMove(key);
+	/*CardFall();
+	CardMove(key);*/
 }
 
 //ï`âÊ
@@ -80,7 +80,7 @@ bool GameBoard::CardMove(const KeyboardCtl& key)
 //ÉJÅ[Éhê∂ê¨
 bool GameBoard::CardCreate(void)
 {
-	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT,HEART,1);
+	nowCard = std::make_shared<Card>(VECTOR2(200,300),boardLT,HEART,1);
 	return false;
 }
 
