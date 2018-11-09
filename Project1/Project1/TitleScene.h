@@ -15,5 +15,6 @@ private:
 	VECTOR2 pos;
 	int keyGetRng;
 	int flam;
+	int fontHandle;
 };
 

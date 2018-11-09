@@ -35,4 +35,4 @@ private:
 	CardInfo cardInfo;
 };
 
-int DrawGraph(VECTOR2 pos, int GrHundle,bool Flag);
+int DrawGraph(VECTOR2 vec, int GrHundle,bool Flag);
