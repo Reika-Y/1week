@@ -3,23 +3,32 @@
 #include "MouseCtrl.h"
 #include "KeyboardCtl.h"
 #include "GameMainScene.h"
+#include "ImageMng.h"
 
 using std::move;
 using std::make_unique;
+
+// 描画関連
+const string fileName = "image/title.png";
+const VECTOR2 stringPos = { 300,370 };
+static int flamCnt = 0;
 
 TitleScene::TitleScene()
 {
 	keyGetRng = GET_DEF_RNG;
 	flam = GET_DEF_RNG;
+	Init();
 }
 
 TitleScene::~TitleScene()
 {
+	flamCnt = 0;
 }
 
 int TitleScene::Init(void)
 {
 	pos = VECTOR2(0, 0);
+	fontHandle = CreateFontToHandle("メイリオ", 30, 9);
 	return 0;
 }
 
@@ -56,9 +65,14 @@ baseScene TitleScene::Updata(baseScene own, const KeyboardCtl&key)
 	{
 		pos.x += 10;
 	}
-
+	flamCnt++;
 	ClsDrawScreen();
-	DrawString(pos.x, pos.y, "TitleScene", 0xffffff);
+	DrawGraph(0, 0, IMAGE_ID(fileName)[0], true);
+	// 点滅表示
+	if (flamCnt / 30 % 2 == 0)
+	{
+		DrawStringToHandle(stringPos.x, stringPos.y, "Push_Enter", 0x000000, fontHandle);
+	}
 	ScreenFlip();
 	if (key.CheckKey(KEY_INPUT_RETURN))
 	{

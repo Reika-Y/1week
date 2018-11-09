@@ -5,7 +5,7 @@
 // âÊëúä÷òA
 const string fileName = "image/trump.png";
 const VECTOR2 cardDiv = { 13,4 };
-const VECTOR2 cardSize = { 60,90 };
+const VECTOR2 cardSize = { 60,80 };
 
 /*
 * ∫›Ωƒ◊∏¿
@@ -31,8 +31,7 @@ Card::~Card()
 // ï`âÊä÷êî
 void Card::Draw(void)
 {
-	int id = cardInfo.hundle * (cardDiv.x) + cardInfo.num - 1;
-	DrawGraph(pos + offSet, IMAGE_ID(fileName)[id],false);
+	DrawGraph(pos + offSet, IMAGE_ID(fileName)[cardInfo.hundle * (cardDiv.x) + cardInfo.num - 1],false);
 }
 
 // çXêVä÷êî
@@ -72,7 +71,7 @@ bool Card::SetOffSet(VECTOR2 offSet)
 	return true;
 }
 
-int DrawGraph(VECTOR2 pos, int GrHundle, bool Flag)
+int DrawGraph(VECTOR2 vec, int GrHundle, bool Flag)
 {
-	return DrawGraph(pos.x, pos.y, GrHundle, Flag);
+	return DrawGraph(vec.x, vec.y, GrHundle, Flag);
 }
