@@ -52,7 +52,7 @@ const VECTOR2 GameBoard::GetBoardSize(void)
 bool GameBoard::CardFall(void)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	if (MoveLimit())
+	if (MoveLimitY())
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x, tmpPos.y + 1));
 	}
@@ -69,11 +69,11 @@ bool GameBoard::CardFall(void)
 bool GameBoard::CardMove(const KeyboardCtl& key)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	if (key.CheckKey(KEY_INPUT_RIGHT) && MoveLimit())
+	if (key.CheckKey(KEY_INPUT_RIGHT) && !(BOARD_SIZE.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x + CARD_SIZE.x, tmpPos.y));
 	}
-	if (key.CheckKey(KEY_INPUT_LEFT) && MoveLimit())
+	if (key.CheckKey(KEY_INPUT_LEFT) && !(tmpPos.x - CARD_SIZE.x < 0))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x - CARD_SIZE.x, tmpPos.y));
 	}
@@ -83,17 +83,31 @@ bool GameBoard::CardMove(const KeyboardCtl& key)
 //ÉJÅ[Éhê∂ê¨
 bool GameBoard::CardCreate(void)
 {
-	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT,HEART,1);
+	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT,SPADE,11);
 	return false;
 }
 
 //à⁄ìÆå¿äE
-bool GameBoard::MoveLimit(void)
+bool GameBoard::MoveLimitX(void)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	
-	if (BOARD_SIZE.x - CARD_SIZE.x < tmpPos.x || tmpPos.x < 0 ||
-		BOARD_SIZE.y - CARD_SIZE.y < tmpPos.y)
+
+	if (BOARD_SIZE.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x)
+	{
+		return false;
+	}
+	if (tmpPos.x - CARD_SIZE.x < 0)
+	{
+		return true;
+	}
+	return true;
+}
+
+bool GameBoard::MoveLimitY(void)
+{
+	VECTOR2 tmpPos = nowCard->GetPos();
+
+	if (BOARD_SIZE.y - CARD_SIZE.y < tmpPos.y + 10)
 	{
 		return false;
 	}

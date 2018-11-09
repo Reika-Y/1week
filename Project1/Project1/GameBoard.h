@@ -21,7 +21,8 @@ public:
 private:
 	bool ReSize(VECTOR2 vec);
 	bool CardCreate(void);
-	bool MoveLimit(void);
+	bool MoveLimitX(void);
+	bool MoveLimitY(void);
 	std::shared_ptr<Card> nowCard;
 	std::shared_ptr<Card> oldCard;
 	card_List cardlist;
