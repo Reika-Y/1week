@@ -5,7 +5,7 @@
 // ‰æ‘œŠÖ˜A
 const string fileName = "image/trump.png";
 const VECTOR2 cardDiv = { 13,4 };
-const VECTOR2 cardSize = { 60,90 };
+const VECTOR2 cardSize = { 60,80 };
 
 /*
 * ºÝ½Ä×¸À
