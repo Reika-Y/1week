@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "list"
+#include <list>
 #include <memory>
 #include "VECTOR2.h"
 
@@ -21,7 +21,8 @@ public:
 private:
 	bool ReSize(VECTOR2 vec);
 	bool CardCreate(void);
-	bool MoveLimitX(void);
+	bool MoveLimitR(VECTOR2 nowPos);
+	bool MoveLimitL(VECTOR2 nowPos);
 	bool MoveLimitY(VECTOR2 nowPos);
 	std::shared_ptr<Card> nowCard;
 	std::vector<std::weak_ptr<Card>*> data;

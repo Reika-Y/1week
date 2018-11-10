@@ -4,7 +4,7 @@
 #include "KeyboardCtl.h"
 #include "Card.h"
 
-const VECTOR2 CARD_SIZE = VECTOR2(60, 90);
+const VECTOR2 CARD_SIZE = VECTOR2(60, 80);
 
 
 GameBoard::GameBoard()
@@ -70,11 +70,11 @@ bool GameBoard::CardFall(void)
 bool GameBoard::CardMove(const KeyboardCtl& key)
 {
 	VECTOR2 tmpPos = nowCard->GetPos();
-	if (key.CheckKey(KEY_INPUT_RIGHT) && !(boardSize.x - CARD_SIZE.x < tmpPos.x + CARD_SIZE.x))
+	if (key.CheckKey(KEY_INPUT_RIGHT) && MoveLimitR(tmpPos))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x + CARD_SIZE.x, tmpPos.y));
 	}
-	if (key.CheckKey(KEY_INPUT_LEFT) && !(tmpPos.x - CARD_SIZE.x < 0))
+	if (key.CheckKey(KEY_INPUT_LEFT) && MoveLimitL(tmpPos))
 	{
 		nowCard->SetPos(VECTOR2(tmpPos.x - CARD_SIZE.x, tmpPos.y));
 	}
@@ -84,15 +84,61 @@ bool GameBoard::CardMove(const KeyboardCtl& key)
 //ÉJÅ[Éhê∂ê¨
 bool GameBoard::CardCreate(void)
 {
-	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT,SPADE,11);
+	HUNDLE hundle = (HUNDLE)GetRand(3);
+	int num = GetRand(12);
+	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT, hundle,num);
 	return false;
 }
 
 //à⁄ìÆå¿äE
-bool GameBoard::MoveLimitX(void)
+bool GameBoard::MoveLimitR(VECTOR2 nowPos)
 {
-	VECTOR2 tmpPos = nowCard->GetPos();
+	VECTOR2 nextPos = nowPos / CARD_SIZE;
 
+	if (boardSize.x - CARD_SIZE.x < nowPos.x + CARD_SIZE.x)
+	{
+		return false;
+	}
+	if (data[nextPos.y][nextPos.x + 1].expired())
+	{
+		if (!data[nextPos.y + 1][nextPos.x + 1].expired())
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (!data[nextPos.y + 1][nextPos.x + 1].expired())
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+bool GameBoard::MoveLimitL(VECTOR2 nowPos)
+{
+	VECTOR2 nextPos = nowPos / CARD_SIZE;
+
+	if (nowPos.x - CARD_SIZE.x < 0)
+	{
+		return false;
+	}
+	if (data[nextPos.y][nextPos.x-1].expired())
+	{
+		if (!data[nextPos.y + 1][nextPos.x - 1].expired())
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (!data[nextPos.y + 1][nextPos.x - 1].expired())
+		{
+			return false;
+		}
+	}
 	return true;
 }
 
@@ -100,13 +146,16 @@ bool GameBoard::MoveLimitY(VECTOR2 nowPos)
 {
 	VECTOR2 nextPos = nowPos  / CARD_SIZE;
 
-	if (boardSize.y - CARD_SIZE.y < nowPos.y + 10)
+	if (boardSize.y - CARD_SIZE.y < nowPos.y )
 	{
 		return false;
 	}
-	if (!data[nextPos.y+1][nextPos.x].expired())
+	if (!data[6][nextPos.x].expired())
 	{
-		return false;
+		if (!data[nextPos.y+1][nextPos.x].expired())
+		{
+			return false;
+		}
 	}
 	return true;
 }
