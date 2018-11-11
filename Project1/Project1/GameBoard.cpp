@@ -147,6 +147,10 @@ bool GameBoard::MoveLimitR(VECTOR2 nowPos)
 	}
 	if (data[nextPos.y][nextPos.x + 1].expired())
 	{
+		if (nextPos.y == 6)
+		{
+			return true;
+		}
 		if (!data[nextPos.y + 1][nextPos.x + 1].expired())
 		{
 			return false;
@@ -154,10 +158,7 @@ bool GameBoard::MoveLimitR(VECTOR2 nowPos)
 	}
 	else
 	{
-		if (!data[nextPos.y + 1][nextPos.x + 1].expired())
-		{
-			return false;
-		}
+		return false;
 	}
 
 	return true;
@@ -173,6 +174,10 @@ bool GameBoard::MoveLimitL(VECTOR2 nowPos)
 	}
 	if (data[nextPos.y][nextPos.x-1].expired())
 	{
+		if (nextPos.y == 6)
+		{
+			return true;
+		}
 		if (!data[nextPos.y + 1][nextPos.x - 1].expired())
 		{
 			return false;
@@ -180,10 +185,7 @@ bool GameBoard::MoveLimitL(VECTOR2 nowPos)
 	}
 	else
 	{
-		if (!data[nextPos.y + 1][nextPos.x - 1].expired())
-		{
-			return false;
-		}
+		return false;
 	}
 	return true;
 }
