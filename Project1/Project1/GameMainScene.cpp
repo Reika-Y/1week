@@ -30,6 +30,7 @@ void GameMainScene::MakePlayer(void)
 int GameMainScene::Init(void)
 {
 	gboard = std::make_shared<GameBoard>();
+	gboard->SetTime();
 	return 0;
 }
 

@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <memory>
+#include <time.h>
 #include "VECTOR2.h"
 
 class Card;
@@ -19,6 +20,7 @@ public:
 	bool GameOver(void);
 	bool CardFall(void);
 	bool CardMove(const KeyboardCtl& key);
+	void SetTime(void);
 private:
 	bool ReSize(VECTOR2 vec);
 	bool CardCreate(void);
@@ -29,6 +31,7 @@ private:
 	std::vector<std::weak_ptr<Card>*> data;
 	std::vector<std::weak_ptr<Card>> baseData;
 	std::shared_ptr<Card> oldCard;
+	time_t s_time, e_time,n_time;
 	card_List cardlist;
 	VECTOR2 boardLT;
 	VECTOR2 screenSize;

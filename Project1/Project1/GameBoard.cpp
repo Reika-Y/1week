@@ -5,7 +5,7 @@
 #include "Card.h"
 
 const VECTOR2 CARD_SIZE = VECTOR2(60, 80);
-
+const int T_LIMIT= 180;
 
 GameBoard::GameBoard()
 {
@@ -19,19 +19,22 @@ GameBoard::~GameBoard()
 //更新処理
 void GameBoard::Update(const KeyboardCtl& key)
 {
-	if (!nowCard)
+	CardCreate();
+	if (CardFall())
 	{
-		CardCreate();
+		CardMove(key);
 	}
-	CardFall();
-	CardMove(key);
 }
 
 //描画
 void GameBoard::Draw(void)
 {
+	DrawFormatString(560, 10, 0xffffff,"残り時間%d", e_time - n_time);
 	DrawBox(boardLT, boardLT + boardSize, 0x109910, true);
-	nowCard->Draw();
+	if (nowCard)
+	{
+		nowCard->Draw();
+	}
 	if (cardlist.size() > 0)
 	{
 		for (auto itr : cardlist)
@@ -53,6 +56,11 @@ bool GameBoard::GameOver(void)
 	{
 		return true;
 	}
+	time(&n_time);
+	if (e_time <= n_time)
+	{
+		return true;
+	}
 
 	return false;
 }
@@ -60,6 +68,10 @@ bool GameBoard::GameOver(void)
 //落下処理
 bool GameBoard::CardFall(void)
 {
+	if (!nowCard)
+	{
+		return false;
+	}
 	VECTOR2 tmpPos = nowCard->GetPos();
 	if (MoveLimitY(tmpPos))
 	{
@@ -71,9 +83,16 @@ bool GameBoard::CardFall(void)
 		data[stop.y][stop.x] = nowCard;
 		oldCard = std::move(nowCard);
 		cardlist.push_back(oldCard);
-		CardCreate();
+		if (CardCreate())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
-	return false;
+	return true;
 }
 
 //左右移動
@@ -91,13 +110,30 @@ bool GameBoard::CardMove(const KeyboardCtl& key)
 	return false;
 }
 
+void GameBoard::SetTime(void)
+{
+	time(&s_time);
+	e_time = s_time + T_LIMIT;
+	time(&n_time);
+}
+
 //カード生成
 bool GameBoard::CardCreate(void)
 {
-	HUNDLE hundle = (HUNDLE)GetRand(3);
-	int num = GetRand(12);
-	nowCard = std::make_shared<Card>(VECTOR2(0,0),boardLT, hundle,num);
-	return false;
+	if (!nowCard)
+	{
+		HUNDLE hundle = (HUNDLE)GetRand(3);
+		int num = GetRand(12)+1;
+		for (auto itr : cardlist)
+		{
+			if (itr->GetCardInfo().hundle == hundle && itr->GetCardInfo().num == num)
+			{
+				return false;
+			}
+		}
+		nowCard = std::make_shared<Card>(VECTOR2(0, 0), boardLT, hundle, num);
+	}
+	return true;
 }
 
 //移動限界
