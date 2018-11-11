@@ -24,6 +24,8 @@ public:
 private:
 	bool ReSize(VECTOR2 vec);
 	bool CardCreate(void);
+	bool CheckRole(int ucnt);
+	bool JudgeRole(const VECTOR2 vec, int ucnt);
 	bool MoveLimitR(VECTOR2 nowPos);
 	bool MoveLimitL(VECTOR2 nowPos);
 	bool MoveLimitY(VECTOR2 nowPos);
@@ -36,6 +38,7 @@ private:
 	VECTOR2 boardLT;
 	VECTOR2 screenSize;
 	VECTOR2 boardSize;
+	int cnt = 0;
 };
 
 int DrawBox(const VECTOR2& vec1, const VECTOR2& vec2, unsigned int color, int FillFlag);

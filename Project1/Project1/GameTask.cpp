@@ -39,7 +39,7 @@ int GameTask::SysInit(void)
 	// ｼｽﾃﾑ処理
 	SetGraphMode(screen_size_x, screen_size_y, 16);	// 65536色ﾓｰﾄﾞに設定
 	ChangeWindowMode(true);							// true:window　false:ﾌﾙｽｸﾘｰﾝ
-	SetWindowText("田口未来は女王様！");
+	SetWindowText("FallPoker");
 	if (DxLib_Init() == -1) return false;			// DXﾗｲﾌﾞﾗﾘ初期化処理
 	SetDrawScreen(DX_SCREEN_BACK);					// ひとまずﾊﾞｯｸﾊﾞｯﾌｧに描画
 	key = std::make_unique<KeyboardCtl>();

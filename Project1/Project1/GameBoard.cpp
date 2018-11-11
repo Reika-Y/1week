@@ -75,14 +75,16 @@ bool GameBoard::CardFall(void)
 	VECTOR2 tmpPos = nowCard->GetPos();
 	if (MoveLimitY(tmpPos))
 	{
-		nowCard->SetPos(VECTOR2(tmpPos.x, tmpPos.y + 1));
+		nowCard->SetPos(VECTOR2(tmpPos.x, tmpPos.y + 2));
 	}
 	else
 	{
+		cnt++;
 		VECTOR2 stop = tmpPos / CARD_SIZE;
 		data[stop.y][stop.x] = nowCard;
 		oldCard = std::move(nowCard);
 		cardlist.push_back(oldCard);
+		CheckRole(cnt);
 		if (CardCreate())
 		{
 			return true;
@@ -135,6 +137,121 @@ bool GameBoard::CardCreate(void)
 	}
 	return true;
 }
+
+bool GameBoard::CheckRole(int ucnt)
+{
+	VECTOR2 vec[4] = { VECTOR2(1,0),VECTOR2(0,-1),VECTOR2(-1,0),VECTOR2(0,1) };
+	for (auto vector : vec)
+	{
+		if (JudgeRole(vector, ucnt))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool GameBoard::JudgeRole(const VECTOR2 vec, int ucnt)
+{
+	bool rtnFlag = false;
+	int numCnt = 0; //ペアカウント
+	int icnt = 0;	//ストレート用カウント
+	int dcnt = 0;
+	int markCnt = 0;//マークカウント
+	int cnt = 0;
+
+	VECTOR2 cardMax = (GetBoardSize() / CARD_SIZE);
+	for (int y = (cardMax.y - 1); y >= 0; y--)
+	{
+		cnt = 0;
+		for (int x = 0; x < cardMax.x - 1; x++)
+		{
+			if ((!data[y][x].expired()))
+			{
+				if (y >= 6 && vec.y != 0)
+				{
+					return false;
+				}
+				if ((!data[y + vec.y][x + vec.x].expired()))//データあり
+				{
+					auto hundle1 = data[y][x].lock()->GetCardInfo().hundle;//1枚目
+					auto hundle2 = data[y + vec.y][x + vec.x].lock()->GetCardInfo().hundle;//2枚目
+					auto num1 = data[y][x].lock()->GetCardInfo().num;//1枚目
+					auto num2 = data[y + vec.y][x + vec.x].lock()->GetCardInfo().num;//2枚目
+
+					cnt++;
+					if (num1 == num2)
+					{
+						numCnt++;
+					}
+
+					if (numCnt == 3)
+					{
+						//フォーカード
+						rtnFlag = true;
+					}
+					//else if ((numCnt == 2))
+					//{
+					//	//スリーカード
+					//	rtnFlag = true;
+					//}
+					else if (numCnt == 2)
+					{
+						//ツーペア
+						rtnFlag = true;
+					}
+					else if (numCnt == 1)
+					{
+						//ワンペア
+						rtnFlag = true;
+						/*auto itr = cardlist.begin();
+						for (int j = 0; j < ucnt + 5; j++)
+						{
+							itr++;
+						}
+						for (auto itr = cardlist.begin(); itr != cardlist.end(); itr++)
+						{
+							
+							if (data[y][x].expired())
+							{
+								cardlist.erase(itr);
+							}
+						}*/
+						
+					}
+
+
+					//if (num2 == (num1 + 1))
+					//{
+					//	icnt++;
+					//}
+					//else if(num2 == (num1 - 1))
+					//{
+					//	dcnt++;
+					//}
+					//if ((icnt == 4) || (dcnt == 4))
+					//{
+					//	//ストレート
+					//	return true;
+					//}
+
+
+					if (hundle1 == hundle2)
+					{
+						markCnt++;
+					}
+					if (markCnt == 4)
+					{
+						//フラッシュ
+						return true;
+					}
+				}
+			}
+		}
+	}
+	return rtnFlag;
+}
+
 
 //移動限界
 bool GameBoard::MoveLimitR(VECTOR2 nowPos)

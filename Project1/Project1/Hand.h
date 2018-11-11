@@ -1,4 +1,5 @@
 #pragma once
+#include "Card.h"
 
 enum HAND {
 	HAND_ONEPAIR,		//ƒƒ“ƒyƒA
@@ -18,6 +19,6 @@ public:
 
 	virtual HAND GetHand(void) = 0;		//–ğ‚ğ•Ô‚·
 	virtual int GetPoint(void) = 0;		//“¾“_‚ğ•Ô‚·
-	virtual bool RolrJuge(void) = 0;	//–ğ”»’è
+	virtual bool RolrJuge(HUNDLE hd1, int num1, HUNDLE hd2, int num2) = 0;	//–ğ”»’è
 };
 
