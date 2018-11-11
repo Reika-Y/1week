@@ -47,6 +47,16 @@ const VECTOR2 GameBoard::GetBoardSize(void)
 	return VECTOR2((baseData.size() / data.size())*CARD_SIZE.x, data.size()*CARD_SIZE.y);
 }
 
+bool GameBoard::GameOver(void)
+{
+	if (!data[0][0].expired())
+	{
+		return true;
+	}
+
+	return false;
+}
+
 //—‰ºˆ—
 bool GameBoard::CardFall(void)
 {

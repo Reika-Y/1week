@@ -30,19 +30,17 @@ void GameMainScene::MakePlayer(void)
 int GameMainScene::Init(void)
 {
 	gboard = std::make_shared<GameBoard>();
-	//MakePlayer();
 	return 0;
 }
 
 baseScene GameMainScene::Updata(baseScene own, const KeyboardCtl&key)
 {		
+	gboard->Update(key);
 	ClsDrawScreen();
 	DrawString(0,0,"GameScene",0xffffff);
-	gboard->Update(key);
 	gboard->Draw();
-	//player->Update();
 	ScreenFlip();
-	if (key.CheckKey(KEY_INPUT_RETURN))
+	if (gboard->GameOver())
 	{
 		return make_unique<ResultScene>();
 	}

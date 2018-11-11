@@ -16,6 +16,7 @@ public:
 	void Update(const KeyboardCtl& key);
 	void Draw(void);
 	const VECTOR2 GetBoardSize(void);
+	bool GameOver(void);
 	bool CardFall(void);
 	bool CardMove(const KeyboardCtl& key);
 private:
