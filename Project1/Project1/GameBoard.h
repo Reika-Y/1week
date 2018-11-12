@@ -29,6 +29,9 @@ private:
 	bool MoveLimitR(VECTOR2 nowPos);
 	bool MoveLimitL(VECTOR2 nowPos);
 	bool MoveLimitY(VECTOR2 nowPos);
+	void DrawScore(void);
+	int ScrCnt;
+	int drawScr = 0;
 	std::shared_ptr<Card> nowCard;
 	std::vector<std::weak_ptr<Card>*> data;
 	std::vector<std::weak_ptr<Card>> baseData;
