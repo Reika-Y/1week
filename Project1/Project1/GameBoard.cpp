@@ -10,6 +10,7 @@ const int T_LIMIT= 180;
 GameBoard::GameBoard()
 {
 	ReSize(VECTOR2(8, 7));
+	ScrCnt = 0;
 }
 
 GameBoard::~GameBoard()
@@ -30,6 +31,7 @@ void GameBoard::Update(const KeyboardCtl& key)
 void GameBoard::Draw(void)
 {
 	DrawFormatString(560, 10, 0xffffff,"残り時間%d", e_time - n_time);
+	DrawScore();
 	DrawBox(boardLT, boardLT + boardSize, 0x109910, true);
 	if (nowCard)
 	{
@@ -323,6 +325,53 @@ bool GameBoard::MoveLimitY(VECTOR2 nowPos)
 		}
 	}
 	return true;
+}
+
+void GameBoard::DrawScore(void)
+{
+	int drawScr = 0;
+	int drawLength;
+	int textColor = GetColor(255, 255, 255);
+
+	ChangeFont("HG創英角ﾎﾟｯﾌﾟ体");
+	ChangeFontType(DX_FONTTYPE_ANTIALIASING_EDGE);
+
+	DrawString(boardSize.x + 90, 50, "SCORE", textColor);
+	DrawString(boardSize.x + 180, 150, "配点", textColor);
+
+	DrawString(boardSize.x + 100, 205, "1ペア", textColor);
+	DrawString(boardSize.x + 250, 205, "1pt", textColor);
+
+	DrawString(boardSize.x + 100, 260, "2ペア", textColor);
+	DrawString(boardSize.x + 250, 260, "2pt", textColor);
+
+	DrawString(boardSize.x + 100, 315, "3カード", textColor);
+	DrawString(boardSize.x + 250, 315, "3pt", textColor);
+
+	DrawString(boardSize.x + 100, 370, "4カード", textColor);
+	DrawString(boardSize.x + 250, 370, "4pt", textColor);
+
+	DrawString(boardSize.x + 100, 425, "フラッシュ", textColor);
+	DrawString(boardSize.x + 250, 425, "5pt", textColor);
+
+	DrawString(boardSize.x + 100, 480, "ストレート", textColor);
+	DrawString(boardSize.x + 250, 480, "6pt", textColor);
+
+	DrawString(boardSize.x + 100, 535, "ストレート", textColor);
+	DrawString(boardSize.x + 100, 550, "フラッシュ", textColor);
+	DrawString(boardSize.x + 250, 540, "7pt", textColor);
+
+
+	drawScr += ScrCnt;
+
+	if (drawScr >= 10000)
+	{
+		drawScr = 9999;
+	}
+
+	drawLength = GetDrawFormatStringWidth("%d", drawScr);
+	DrawFormatString(boardSize.x + 280 - drawLength, 70, textColor, "%d", drawScr);
+	DrawString(boardSize.x + 290, 70, "pt", textColor);
 }
 
 //初期化
