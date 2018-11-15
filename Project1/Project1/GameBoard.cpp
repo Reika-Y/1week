@@ -6,6 +6,7 @@
 
 const VECTOR2 CARD_SIZE = VECTOR2(60, 80);
 const int T_LIMIT= 180;
+const int D_LIMIT = 30;
 
 GameBoard::GameBoard()
 {
@@ -25,6 +26,10 @@ void GameBoard::Update(const KeyboardCtl& key)
 	{
 		CardMove(key);
 	}
+	if (LineCheck())
+	{
+		LineDelete();
+	}
 }
 
 //ï`âÊ
@@ -37,14 +42,26 @@ void GameBoard::Draw(void)
 	{
 		nowCard->Draw();
 	}
-	if (cardlist.size() > 0)
+	for (int y = 0; y < GetBoardSize().y / CARD_SIZE.y; y++)
 	{
-		for (auto itr : cardlist)
+		for (int x = 0; x < GetBoardSize().x / CARD_SIZE.x; x++)
 		{
-			itr->Draw();
+			if (!data[y][x].expired())
+			{
+				data[y][x].lock()->Draw();
+			}
 		}
 	}
 }
+
+auto GameBoard::AddCardList(std::shared_ptr<Card>&& cardPtr)
+{
+	cardlist.push_back(cardPtr);
+	auto itr = cardlist.end();
+	itr--;
+	return itr;
+}
+
 
 //î’ñ ÉTÉCÉY
 const VECTOR2 GameBoard::GetBoardSize(void)
@@ -83,9 +100,9 @@ bool GameBoard::CardFall(void)
 	{
 		cnt++;
 		VECTOR2 stop = tmpPos / CARD_SIZE;
-		data[stop.y][stop.x] = nowCard;
-		oldCard = std::move(nowCard);
-		cardlist.push_back(oldCard);
+		auto tmp = AddCardList(std::make_shared<Card>(tmpPos, boardLT, nowCard->GetCardInfo().hundle, nowCard->GetCardInfo().num));
+		data[stop.y][stop.x] = (*tmp);
+		nowCard.reset();
 		CheckRole(cnt);
 		if (CardCreate())
 		{
@@ -114,6 +131,44 @@ bool GameBoard::CardMove(const KeyboardCtl& key)
 	return false;
 }
 
+bool GameBoard::LineCheck(void)
+{
+	bool rtnFlag = true;
+	for (int x = 0; x < GetBoardSize().x / CARD_SIZE.x; x++)
+	{
+		if (data[6][x].expired())
+		{
+			rtnFlag = false;
+		}
+	}
+	return rtnFlag;
+}
+
+bool GameBoard::LineDelete(void)
+{
+	for (int x = 0; x < GetBoardSize().x / CARD_SIZE.x; x++)
+	{
+		if (!data[6][x].expired())
+		{
+			data[6][x].reset();
+		}
+	}
+	for (int y = (GetBoardSize().y / CARD_SIZE.y) - 2; y >=0 ; y--)
+	{
+		for (int x = 0; x < GetBoardSize().x / CARD_SIZE.x; x++)
+		{
+			if (!data[y][x].expired())
+			{
+				auto tmp = data[y][x].lock()->GetPos();
+				data[y][x].lock()->SetPos(VECTOR2(tmp.x, tmp.y + CARD_SIZE.y));
+				data[y + 1][x] = std::move(data[y][x]);
+			}
+		}
+	}
+	
+	return false;
+}
+
 void GameBoard::SetTime(void)
 {
 	time(&s_time);
@@ -135,7 +190,7 @@ bool GameBoard::CardCreate(void)
 				return false;
 			}
 		}
-		nowCard = std::make_shared<Card>(VECTOR2(0, 0), boardLT, hundle, num);
+		nowCard = std::make_shared<Card>(VECTOR2(boardSize.x/2, 0), boardLT, hundle, num);
 	}
 	return true;
 }

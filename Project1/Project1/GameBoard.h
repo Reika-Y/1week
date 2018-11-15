@@ -20,9 +20,12 @@ public:
 	bool GameOver(void);
 	bool CardFall(void);
 	bool CardMove(const KeyboardCtl& key);
+	bool LineCheck(void);
+	bool LineDelete(void);
 	void SetTime(void);
 private:
 	bool ReSize(VECTOR2 vec);
+	auto AddCardList(std::shared_ptr<Card>&& cardPtr);
 	bool CardCreate(void);
 	bool CheckRole(int ucnt);
 	bool JudgeRole(const VECTOR2 vec, int ucnt);
@@ -35,7 +38,6 @@ private:
 	std::shared_ptr<Card> nowCard;
 	std::vector<std::weak_ptr<Card>*> data;
 	std::vector<std::weak_ptr<Card>> baseData;
-	std::shared_ptr<Card> oldCard;
 	time_t s_time, e_time,n_time;
 	card_List cardlist;
 	VECTOR2 boardLT;
