@@ -1,4 +1,6 @@
 #pragma once
+#include "Card.h"
+
 
 enum HAND {
 	HAND_ONEPAIR,		//ワンペア
@@ -11,16 +13,20 @@ enum HAND {
 	HAND_MAX
 };
 
+
 class Role
 {
 public:
 	Role();
 	~Role();
 
-	int PairJudge(int num,int num2);//ペア判定
-	void CntClear(void);
+	void ReSetJudge(void);
+	void PairJudge(CardInfo card[7]);//ペア判定
+	int RoleCntSum(void);
 
 private:
-	int pairCnt;
+	HAND hand;
+	int point[HAND_MAX];//揃った役の数を数える
+	int rolePoint;
 };
 

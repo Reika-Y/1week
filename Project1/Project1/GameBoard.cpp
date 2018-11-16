@@ -29,11 +29,9 @@ void GameBoard::Update(const KeyboardCtl& key)
 	if (LineCheck())
 	{
 		JudgeRole();
-		for (int j = 0; j < 1000; j++)
-		{
-
-		}
 		LineDelete();
+		drawScr += role->RoleCntSum();
+		role->ReSetJudge();
 	}
 }
 
@@ -205,36 +203,18 @@ bool GameBoard::CardCreate(void)
 //カードの判定
 void GameBoard::JudgeRole(void)
 {
+	role->ReSetJudge();
 	VECTOR2 cardMax = (GetBoardSize() / CARD_SIZE);
-	//VECTOR2 vec = VECTOR2(1, 0);//右方向に足していく
-	int judge[HAND_MAX] = { 0, 0, 0, 0, 0, 0, 0};
 
-	for (int x = 1; x < cardMax.x; x++)
+	CardInfo judge[8];
+	
+	for (int x = 0; x < cardMax.x; x++)
 	{
-		if ((role->PairJudge(data[6][x - 1].lock()->GetCardInfo().num,
-							    data[6][x].lock()->GetCardInfo().num)) == 2)
-		{
-			if(data[6][x - 2].lock()->GetCardInfo().num != data[6][x].lock()->GetCardInfo().num)
-			{
-				ClsDrawScreen();
-				DrawString(200, 50, "TwoPeir22222", 0xffffff);
-				ScreenFlip();
-				judge[HAND_TWOPAIR] = 1;
-			}
-		}
-		else if (role->PairJudge(data[6][x - 1].lock()->GetCardInfo().num,
-								   data[6][x].lock()->GetCardInfo().num) == 1)
-		{
-			ClsDrawScreen();
-			DrawString(200, 50, "OnePeir", 0xffffff);
-			ScreenFlip();
-			judge[HAND_ONEPAIR] = 1;
-		}
+		judge[x] = data[6][x].lock()->GetCardInfo();
 	}
 
-	role->CntClear();
+	role->PairJudge(judge);
 }
-
 
 //移動限界
 bool GameBoard::MoveLimitR(VECTOR2 nowPos)
