@@ -76,9 +76,12 @@ const VECTOR2 GameBoard::GetBoardSize(void)
 
 bool GameBoard::GameOver(void)
 {
-	if (!data[0][0].expired())
+	for (int x = 0; x < GetBoardSize().x / CARD_SIZE.x; x++)
 	{
-		return true;
+		if (!data[0][x].expired())
+		{
+			return true;
+		}
 	}
 	time(&n_time);
 	if (e_time <= n_time)

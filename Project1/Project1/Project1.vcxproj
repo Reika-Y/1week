@@ -145,6 +145,7 @@
     <ClCompile Include="MouseCtrl.cpp" />
     <ClCompile Include="Onepair.cpp" />
     <ClCompile Include="ResultScene.cpp" />
+    <ClCompile Include="Role.cpp" />
     <ClCompile Include="Straight.cpp" />
     <ClCompile Include="StraightFlush.cpp" />
     <ClCompile Include="ThreeCard.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MouseCtrl.h" />
     <ClInclude Include="Onepair.h" />
     <ClInclude Include="ResultScene.h" />
+    <ClInclude Include="Role.h" />
     <ClInclude Include="Straight.h" />
     <ClInclude Include="StraightFlush.h" />
     <ClInclude Include="ThreeCard.h" />
