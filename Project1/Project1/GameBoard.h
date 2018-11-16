@@ -4,10 +4,12 @@
 #include <memory>
 #include <time.h>
 #include "VECTOR2.h"
+#include "Role.h"
 
 class Card;
 class KeyboardCtl;
 using card_List = std::list<std::shared_ptr<Card>>;
+
 
 class GameBoard
 {
@@ -27,8 +29,7 @@ private:
 	bool ReSize(VECTOR2 vec);
 	auto AddCardList(std::shared_ptr<Card>&& cardPtr);
 	bool CardCreate(void);
-	bool CheckRole(int ucnt);
-	bool JudgeRole(const VECTOR2 vec, int ucnt);
+	void JudgeRole(void);
 	bool MoveLimitR(VECTOR2 nowPos);
 	bool MoveLimitL(VECTOR2 nowPos);
 	bool MoveLimitY(VECTOR2 nowPos);
@@ -43,7 +44,7 @@ private:
 	VECTOR2 boardLT;
 	VECTOR2 screenSize;
 	VECTOR2 boardSize;
-	int cnt = 0;
+	std::unique_ptr<Role> role;
 };
 
 int DrawBox(const VECTOR2& vec1, const VECTOR2& vec2, unsigned int color, int FillFlag);

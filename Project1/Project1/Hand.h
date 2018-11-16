@@ -1,16 +1,7 @@
 #pragma once
 #include "Card.h"
 
-enum HAND {
-	HAND_ONEPAIR,		//ワンペア
-	HAND_TWOPAIR,		//ツーペア
-	HAND_THREECARD,		//スリーカード
-	HAND_FOURCARD,		//フォーカード
-	HAND_FLUSH,			//フラッシュ
-	HAND_STRAIGHT,		//ストレート
-	HAND_STRAIGHTFLUSH, //ストレートフラッシュ
-	HAND_MAX
-};
+
 
 class Hand
 {
