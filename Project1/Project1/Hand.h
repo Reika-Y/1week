@@ -1,6 +1,6 @@
 #pragma once
 #include "Card.h"
-
+#include "Role.h"
 
 
 class Hand
